@@ -1,20 +1,39 @@
-:root {--line:#ccc;--today:#e8f0ff; --err:#c00;}
-* {box-sizing:border-box;}
-html,body{height:100%;margin:0;}
-main{height:100%;display: flex;flex-direction: column; gap: 8px;padding: 8px;}
-h1{margin:0;font-size:1.2rem;}
-#shift-form{display: flex;flex-wrap: wrap;gap: 9px;align-items: end;}
-.error{margin: 0;min-height: 1.2em;color: var(--err);}
+:root { --line: #ccc; --head: #f3f3f3; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
 
-#calendar{
-    flex: 1;min-height: 0;
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    grid-template-rows: auto;
-    grid-auto-rows: minmax(0, 1fr);
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
 }
-.weekday{text-align: center;background: #f3f3f3;border: 1px solid var(--line);}
-.day-cell{border: 1px solid var(--line);padding: 2px;min-height: 0;overflow-y: auto;}
-.day-cell.today{background: var(--today);}
-.day-number{font-weight: bold; font-size: 0.8rem;}
-.shift-item{font-size: 0.75rem;overflow-wrap: anywhere;}
+h1 { margin: 0; font-size: 1.2rem; }
+h2 { margin: 0 0 4px; font-size: 1rem; }
+
+.shift-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.shift-list-section {
+  flex: 1;
+  min-height: 0; /* これがないと画面からはみ出す */
+  overflow-y: auto; /* 件数が増えたらここだけスクロール */
+}
+
+#shift-list { width: 100%; border-collapse: collapse; }
+#shift-list th, #shift-list td {
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+#shift-list th {
+  position: sticky; /* スクロールしても見出しが残る */
+  top: 0;
+  background: var(--head);
+}

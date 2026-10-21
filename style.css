@@ -1,6 +1,24 @@
+:root {
+  --line: #ccc;
+  --head: #f3f3f3;
+  --accent: #3b6ef5;
+  --accent-dark: #2a55c9;
+}
 
-:root { --accent: #3b6ef5; --accent-dark: #2a55c9; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
 
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+h1 { margin: 0; font-size: 1.2rem; }
+h2 { margin: 0 0 4px; font-size: 1rem; }
+
+/* ===== 入力欄 ===== */
 .shift-form {
   display: flex;
   flex-wrap: wrap;
@@ -41,4 +59,28 @@
   transition: background 0.15s;
 }
 .shift-form button:hover { background: var(--accent-dark); }
-.shift-form button:focus-visible { outline: 3px solid rgba(59, 110, 245, 0.4); outline-offset: 2px; }
+.shift-form button:focus-visible {
+  outline: 3px solid rgba(59, 110, 245, 0.4);
+  outline-offset: 2px;
+}
+
+
+.shift-list-section {
+  flex: 1;
+  min-height: 0; /* これがないと画面からはみ出す */
+  overflow-y: auto; /* 件数が増えたらここだけスクロール */
+}
+
+#shift-list { width: 100%; border-collapse: collapse; }
+#shift-list th,
+#shift-list td {
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+#shift-list th {
+  position: sticky; /* スクロールしても見出しが残る */
+  top: 0;
+  background: var(--head);
+}

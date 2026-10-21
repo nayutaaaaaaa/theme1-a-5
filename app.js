@@ -2,7 +2,7 @@ const dateInput = document.getElementById("date-input");
 const timeInput = document.getElementById("time-input");
 const shiftNameInput = document.getElementById("shift-name");
 const addButton = document.getElementById("add-button");
-const shiftList = document.getElementById("shift-list");
+const shiftTableBody = document.querySelector("#shift-list tbody");
 
 const STORAGE_KEY = "shiftItems";
 
@@ -19,12 +19,23 @@ function saveShiftItems(items) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
 
+function getWeekdayLabel(dateString) {
+  const days = ["日", "月", "火", "水", "木", "金", "土"];
+  const d = new Date(dateString);
+  return Number.isNaN(d.getTime()) ? "" : days[d.getDay()];
+}
+
 function renderShiftItems(items) {
-  shiftList.innerHTML = "";
+  shiftTableBody.innerHTML = "";
   items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = `${item.date} ${item.time} ${item.shiftName}`;
-    shiftList.appendChild(li);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.date}</td>
+      <td>${getWeekdayLabel(item.date)}</td>
+      <td>${item.time}</td>
+      <td>${item.shiftName}</td>
+    `;
+    shiftTableBody.appendChild(tr);
   });
 }
 
@@ -38,9 +49,7 @@ addButton.addEventListener("click", () => {
 
   if (!date || !time || !shiftName) return;
 
-  const newItem = { date, time, shiftName };
-  shiftItems.push(newItem);
-
+  shiftItems.push({ date, time, shiftName });
   saveShiftItems(shiftItems);
   renderShiftItems(shiftItems);
 

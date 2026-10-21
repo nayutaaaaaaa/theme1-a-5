@@ -9,6 +9,33 @@
   <body>
     <main>
       <h1>シフト管理アプリ</h1>
+    <section class="shift-form">
+      <label for="date-input">日付</label>
+      <input id="date-input" type="date" />
+
+      <label for="time-input">時間</label>
+      <input id="time-input" type="time" />
+
+      <label for="shift-name">名前</label>
+      <input id="shift-name" type="text" placeholder="シフトの名前を入力" />
+
+      <button id="add-button" type="button">登録</button>
+    </section>
+
+    <section class="shift-list-section">
+      <h2>シフト一覧</h2>
+      <table id="shift-list">
+      <thead>
+        <tr>
+        <th>日付</th>
+        <th>曜日</th>
+        <th>時間</th>
+        <th>名前</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      </table>
+    </section>
     </main>
 
     <script src="app.js"></script>

@@ -1,39 +1,44 @@
-:root { --line: #ccc; --head: #f3f3f3; }
-* { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
 
-main {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px;
-}
-h1 { margin: 0; font-size: 1.2rem; }
-h2 { margin: 0 0 4px; font-size: 1rem; }
+:root { --accent: #3b6ef5; --accent-dark: #2a55c9; }
 
 .shift-form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-}
-
-.shift-list-section {
-  flex: 1;
-  min-height: 0; /* これがないと画面からはみ出す */
-  overflow-y: auto; /* 件数が増えたらここだけスクロール */
-}
-
-#shift-list { width: 100%; border-collapse: collapse; }
-#shift-list th, #shift-list td {
+  gap: 8px 12px;
+  padding: 12px;
+  background: #fff;
   border: 1px solid var(--line);
-  padding: 4px 8px;
-  text-align: left;
-  overflow-wrap: anywhere;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
-#shift-list th {
-  position: sticky; /* スクロールしても見出しが残る */
-  top: 0;
-  background: var(--head);
+.shift-form label { font-size: 0.8rem; color: #666; }
+
+.shift-form input {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fafafa;
+  font: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
+.shift-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 110, 245, 0.2);
+}
+
+.shift-form button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.shift-form button:hover { background: var(--accent-dark); }
+.shift-form button:focus-visible { outline: 3px solid rgba(59, 110, 245, 0.4); outline-offset: 2px; }

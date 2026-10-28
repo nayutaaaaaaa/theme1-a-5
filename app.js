@@ -1,9 +1,11 @@
 //各変数たちにhtml側のユーザー入力を代入
 const dateInput = document.getElementById("date-input");
-const timeInput = document.getElementById("time-input");
+const startTimeInput = document.getElementById("start-time-input");
+const endTimeInput = document.getElementById("end-time-input");
 const shiftNameInput = document.getElementById("shift-name");
 const addButton = document.getElementById("add-button");
 const shiftTableBody = document.querySelector("#shift-list tbody");
+
 //ブラウザ上で保存するための変数
 const STORAGE_KEY = "shiftItems";
 
@@ -37,7 +39,8 @@ function renderShiftItems(items) {
     tr.innerHTML = `
       <td>${item.date}</td>
       <td>${getWeekdayLabel(item.date)}</td>
-      <td>${item.time}</td>
+      <td>${item.startTime}</td>
+      <td>${item.endTime}</td>
       <td>${item.shiftName}</td>
     `;
     shiftTableBody.appendChild(tr);
@@ -47,18 +50,22 @@ function renderShiftItems(items) {
 let shiftItems = loadShiftItems();
 renderShiftItems(shiftItems);   
 
-addButton.addEventListener("click", () => {
+function addShiftItem() {
   const date = dateInput.value.trim();
-  const time = timeInput.value.trim();
+  const startTime = startTimeInput.value.trim();
+  const endTime = endTimeInput.value.trim();
   const shiftName = shiftNameInput.value.trim();
 
-  if (!date || !time || !shiftName) return;
+  if (!date || !startTime || !endTime || !shiftName) return;
 
-  shiftItems.push({ date, time, shiftName });
+  shiftItems.push({ date, startTime, endTime, shiftName });
   saveShiftItems(shiftItems);
   renderShiftItems(shiftItems);
 
   dateInput.value = "";
-  timeInput.value = "";
+  startTimeInput.value = "";
+  endTimeInput.value = "";
   shiftNameInput.value = "";
-});
+}
+
+addButton.addEventListener("click", addShiftItem);

@@ -59,6 +59,8 @@ h2 { margin: 0 0 4px; font-size: 1rem; }
   background: #fff;
   box-shadow: 0 0 0 3px rgba(59, 110, 245, 0.2);
 }
+.shift-form label[for="shift-name"],
+#shift-name { order: -1;}
 
 .shift-form button {
   grid-column: 1 / -1;

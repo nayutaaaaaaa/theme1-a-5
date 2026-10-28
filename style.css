@@ -20,19 +20,21 @@ h2 { margin: 0 0 4px; font-size: 1rem; }
 
 /* ===== 入力欄 ===== */
 .shift-form {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 8px 12px;
+  gap: 10px 12px;
   padding: 12px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
-.shift-form label { font-size: 0.8rem; color: #666; }
+.shift-form label { font-size: 0.95rem; font-weight: bold; color: #333; }
 
 .shift-form input {
+  width: 100%;
+  min-width: 0;
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -48,7 +50,8 @@ h2 { margin: 0 0 4px; font-size: 1rem; }
 }
 
 .shift-form button {
-  padding: 8px 20px;
+  grid-column: 1 / -1;
+  padding: 12px;
   border: none;
   border-radius: 8px;
   background: var(--accent);
@@ -58,10 +61,17 @@ h2 { margin: 0 0 4px; font-size: 1rem; }
   cursor: pointer;
   transition: background 0.15s;
 }
+.shift-form button:active { transform: translateY(1px); }
 .shift-form button:hover { background: var(--accent-dark); }
 .shift-form button:focus-visible {
   outline: 3px solid rgba(59, 110, 245, 0.4);
   outline-offset: 2px;
+}
+
+@media (min-width: 700px) {
+  .shift-form { display: flex; flex-wrap: wrap; }
+  .shift-form input { width: auto;}
+  .shift-form button { padding: 8px 20px; }
 }
 
 

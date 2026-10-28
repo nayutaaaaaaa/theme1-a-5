@@ -5,6 +5,7 @@ const endTimeInput = document.getElementById("end-time-input");
 const shiftNameInput = document.getElementById("shift-name");
 const addButton = document.getElementById("add-button");
 const shiftTableBody = document.querySelector("#shift-list tbody");
+const saveMessage = document.getElementById("save-message");
 
 //ブラウザ上で保存するための変数
 const STORAGE_KEY = "shiftItems";
@@ -50,6 +51,13 @@ function renderShiftItems(items) {
 let shiftItems = loadShiftItems();
 renderShiftItems(shiftItems);   
 
+function showSaveMessage(message, isSuccess = true) {
+  saveMessage.textContent = message;
+  saveMessage.style.color = isSuccess ? "#1d7a39" : "#c0392b";
+  saveMessage.style.fontWeight = "bold";
+  saveMessage.style.display = "block";
+}
+
 function addShiftItem() {
   const date = dateInput.value.trim();
   const startTime = startTimeInput.value.trim();
@@ -62,10 +70,17 @@ function addShiftItem() {
   saveShiftItems(shiftItems);
   renderShiftItems(shiftItems);
 
+  showSaveMessage(`${shiftName} を登録しました。`);
+
   dateInput.value = "";
   startTimeInput.value = "";
   endTimeInput.value = "";
   shiftNameInput.value = "";
+
+  setTimeout(() => {
+    saveMessage.textContent = "";
+    saveMessage.style.display = "none";
+  }, 2000);
 }
 
 addButton.addEventListener("click", addShiftItem);

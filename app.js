@@ -76,7 +76,7 @@ function addShiftItem() {
   startTimeInput.value = "";
   endTimeInput.value = "";
   shiftNameInput.value = "";
-
+// 2秒後にメッセージを非表示にする
   setTimeout(() => {
     saveMessage.textContent = "";
     saveMessage.style.display = "none";

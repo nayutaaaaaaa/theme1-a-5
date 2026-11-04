@@ -52,6 +52,8 @@ h2 { margin: 0 0 4px; font-size: 1rem; }
   background: #fafafa;
   font: inherit;
   transition: border-color 0.15s, box-shadow 0.15s;
+  min-width: 0;
+  max-width: 100%;
 }
 .shift-form input:focus {
   outline: none;
